@@ -311,6 +311,7 @@ function Get-RecentlyInstalledSoftwareEventLogs {
 function Get-RunningServices {
     Write-Host "Collecting Running Services..."
     $ApplicationFolder = "$FolderCreation\Services"
+    mkdir -Force $ApplicationFolder | Out-Null
     $ProcessOutput = "$ApplicationFolder\RunningServices.txt"
     Get-Service | Where-Object {$_.Status -eq "Running"} | format-list | Out-File -Force -FilePath $ProcessOutput
 	$CSVExportLocation = "$CSVOutputFolder\RunningServices.csv"
